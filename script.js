@@ -24,7 +24,8 @@ Sulla base di queste informazioni dovrà calcolare il prezzo totale del viaggio,
 
 // 1. Prendere l'elemento dal DOM:
 const finalPrice = document.getElementById('price');
-
+const km = document.getElementById('km');
+const age = document.getElementById('age');
 // 2. Preparare variabile del prezzo per km:
 const priceKm = 0.21;
 
@@ -47,7 +48,6 @@ if (isNaN (userAge && nKm)){
 }
 
 if (isValid){
-    
     // 6. Applicare sconto 20% per minorenni (< 18 anni):
     // 7. Applicare sconto 40% per over 65 (>= 65 anni):
     if (userAge < 18){
@@ -59,7 +59,9 @@ if (isValid){
         ticketPrice = ticketPrice - sconto;
     }
     // 9. Stampa in DOM:
-    finalPrice.innerText = 'Prezzo Biglietto: ' + ticketPrice.toFixed(2) + '\u20AC';
+    finalPrice.innerText = ticketPrice.toFixed(2) + '\u20AC';
+    km.innerText = nKm + 'km';
+    age.innerText = userAge;
 }
 
 
