@@ -21,34 +21,46 @@ Sulla base di queste informazioni dovrà calcolare il prezzo totale del viaggio,
 9. Stampare in DOM;
 */
 
+
 // 1. Prendere l'elemento dal DOM:
 const finalPrice = document.getElementById('price');
-// console.log(finalPrice);
 
 // 2. Preparare variabile del prezzo per km:
 const priceKm = 0.21;
 
 // 3. Chiedere all'utente il numero di km che vuole percorrere:
 const nKm = parseInt(prompt('Digita il numero di chilometri da percorrere', '200'));
-// console.log(nKm);
 
 // 4. Chiedere all'utente l'età del passeggero:
 const userAge = parseInt(prompt('Quanti anni hai?', '20'));
-// console.log(userAge);
 
 // 5. Calcolare prezzo totale del viaggio:
 let ticketPrice = nKm * priceKm;
-// console.log(ticketPrice);
 
-// 6. Applicare sconto 20% per minorenni (< 18 anni):
-// 7. Applicare sconto 40% per over 65 (>= 65 anni):
-if (userAge < 18){
-    const sconto = ticketPrice * 20 / 100;
-    ticketPrice = ticketPrice - sconto;
+// CONTROLLO
+let isValid= true;
+
+
+if (isNaN (userAge && nKm)){
+    isValid=false;
+    alert('Inserisci valore numerico')
 }
-else if (userAge >= 65){
-    const sconto = ticketPrice * 40 / 100;
-    ticketPrice = ticketPrice - sconto;
+
+if (isValid){
+    
+    // 6. Applicare sconto 20% per minorenni (< 18 anni):
+    // 7. Applicare sconto 40% per over 65 (>= 65 anni):
+    if (userAge < 18){
+        const sconto = ticketPrice * 20 / 100;
+        ticketPrice = ticketPrice - sconto;
+    }
+    else if (userAge >= 65){
+        const sconto = ticketPrice * 40 / 100;
+        ticketPrice = ticketPrice - sconto;
+    }
+    // 9. Stampa in DOM:
+    finalPrice.innerText = 'Prezzo Biglietto: ' + ticketPrice.toFixed(2) + '\u20AC';
 }
-// 9. Stampa in DOM:
-finalPrice.innerText = ticketPrice.toFixed(2);
+
+
+
