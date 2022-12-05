@@ -18,6 +18,7 @@ Sulla base di queste informazioni dovrà calcolare il prezzo totale del viaggio,
 6. Applicare sconto 20% per minorenni (< 18 anni);
 7. Applicare sconto 40% per over 65 (>= 65 anni);
 8. Calcolare prezzo finale in forma umana;
+9. Stampare in DOM;
 */
 
 // 1. Prendere l'elemento dal DOM:
@@ -26,8 +27,6 @@ const finalPrice = document.getElementById('price');
 
 // 2. Preparare variabile del prezzo per km:
 const priceKm = 0.21;
-const discountMinors = 20;
-const discountOver = 40;
 
 // 3. Chiedere all'utente il numero di km che vuole percorrere:
 const nKm = parseInt(prompt('Digita il numero di chilometri da percorrere', '200'));
@@ -42,10 +41,14 @@ let ticketPrice = nKm * priceKm;
 // console.log(ticketPrice);
 
 // 6. Applicare sconto 20% per minorenni (< 18 anni):
+// 7. Applicare sconto 40% per over 65 (>= 65 anni):
 if (userAge < 18){
-    ticketPrice = ticketPrice - discountMinors ;
+    const sconto = ticketPrice * 20 / 100;
+    ticketPrice = ticketPrice - sconto;
 }
-else{
-    ticketPrice = nKm * priceKm; 
+else if (userAge >= 65){
+    const sconto = ticketPrice * 40 / 100;
+    ticketPrice = ticketPrice - sconto;
 }
-console.log(ticketPrice);
+// 9. Stampa in DOM:
+finalPrice.innerText = ticketPrice.toFixed(2);
